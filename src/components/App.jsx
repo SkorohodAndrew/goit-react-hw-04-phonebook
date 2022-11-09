@@ -17,12 +17,23 @@ export class App extends Component {
     filter: '',
   };
 
-  componentDidMount() {
-    const contacts = localStorage.getItem(`contacts`);
-    const existingContacts = JSON.parse(contacts);
+  // componentDidMount() {
+  //   const contacts = localStorage.getItem('contacts');
+  //   const existingContacts = JSON.parse(contacts);
 
-    if (existingContacts) {
-      this.setState({ contacts: existingContacts });
+  //   if (existingContacts) {
+  //     this.setState({ contacts: existingContacts });
+  //   }
+
+  //   // localStorage.setItem(`contacts`, JSON.stringify(this.state.contacts));
+  // }
+
+  componentDidMount() {
+    const contacts = localStorage.getItem('contacts');
+    const parsedContacts = JSON.parse(contacts);
+
+    if (parsedContacts) {
+      this.setState({ contacts: parsedContacts });
     }
   }
 
