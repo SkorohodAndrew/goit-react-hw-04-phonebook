@@ -6,16 +6,26 @@ import { nanoid } from 'nanoid';
 
 import { Container } from 'App.styled';
 
-export class App extends Component {
-  state = {
-    contacts: [
+export const App = ()=> {
+  const [contacts, setContacts] = useState(() => {
+    return JSON.parse(localStorage.getItem('contacts')) ?? [
       { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
       { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
       { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
       { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-    ],
-    filter: '',
-  };
+    ];
+  });
+  const [filter, setFilter] = useState('');
+
+  // state = {
+  //   contacts: [
+  //     { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
+  //     { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
+  //     { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
+  //     { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
+  //   ],
+  //   filter: '',
+  // };
 
   // componentDidMount() {
   //   const contacts = localStorage.getItem('contacts');
@@ -27,6 +37,10 @@ export class App extends Component {
 
   //   // localStorage.setItem(`contacts`, JSON.stringify(this.state.contacts));
   // }
+
+  // useEffect(() => {
+  //   localStorage.setItem('email', JSON.stringify(contacts))
+  // },[contacts]);
 
   componentDidMount() {
     const contacts = localStorage.getItem('contacts');
@@ -100,16 +114,13 @@ export class App extends Component {
   }
 
   handleChange = e => {
-    const { name, value } = e.target;
-    this.setState({
-      [name]: value,
-    });
+    setFilter(e.target.value)
   };
 
-  render() {
-    const { addContacts, handleChange, removeContacts } = this;
-    const { filter } = this.state;
-    const contacts = this.getFilterContacts();
+
+    // const { addContacts, handleChange, removeContacts } = this;
+    // const { filter } = this.state;
+    // const contacts = this.getFilterContacts();
 
     return (
       <Container>
@@ -121,4 +132,3 @@ export class App extends Component {
       </Container>
     );
   }
-}
