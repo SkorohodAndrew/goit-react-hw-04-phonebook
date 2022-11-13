@@ -27,7 +27,7 @@ export const App = () => {
 
   const addContacts = contact => {
     contact.preventDefault();
-    if (isDuplicate(contact)) {
+    if (isDuplicate({ name, number })) {
       return alert(` Такий ${contact.name} і ${contact.number} вже є`);
     }
     setContacts(prev => {
@@ -38,6 +38,8 @@ export const App = () => {
       };
       return [...prev, newContact];
     });
+    setName('');
+    setNumber('');
   };
 
   const handleChange = event => {
