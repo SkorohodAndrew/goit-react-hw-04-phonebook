@@ -1,9 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 import { Form, Label, Input } from './FilterContacts.styled';
 
-export function FilterContacts({ onChange, filter }) {
+export function FilterContacts({ filter, onChange }) {
   return (
     <Form>
       <Label htmlFor="">Find Contacts by name</Label>
@@ -12,7 +12,7 @@ export function FilterContacts({ onChange, filter }) {
   );
 }
 
-FilterContacts.propTypes = {
-  onChange: PropTypes.func.isRequired,
-  filter: PropTypes.string,
-};
+// FilterContacts.propTypes = {
+//   onChange: PropTypes.func.isRequired,
+//   filter: PropTypes.string,
+// };

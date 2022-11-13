@@ -1,67 +1,53 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import { nanoid } from 'nanoid';
 import PropTypes from 'prop-types';
 
 import { Form, Label, Input, Button } from './FormAddPhone.styled';
 
-export const FormAddPhone = ({ addContacts }) => {
-  const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
+const nameId = nanoid(5);
+const numberId = nanoid(8);
 
-  // state = {
-  //   name: '',
-  //   number: '',
-  // };
+export const FormAddPhone = ({
+  onSubmit,
+  onChange,
+  numberValue,
+  nameValue,
+}) => {
+  // const [name, setName] = useState('');
+  // const [number, setNumber] = useState('');
 
-  const nameId = nanoid();
-  const numberId = nanoid();
-
-  // handleChange = event => {
+  // const handleChange = event => {
   //   const { name, value } = event.target;
-  //   this.setState({
-  //     [name]: value,
+  //   switch (name) {
+  //     case 'name':
+  //       return setName(value);
+
+  //     case 'number':
+  //       return setNumber(value);
+
+  //     default:
+  //       return;
+  //   }
+  // };
+
+  // const addContacts = contact => {
+  //   // e.preventDefault();
+  //   if (isDuplicate(contact)) {
+  //     return alert(` Такий ${contact.name} і ${contact.number} вже є`);
+  //   }
+  //   setContacts(prev => {
+  //     const newContact = {
+  //       id: nanoid(),
+  //       ...contact,
+  //     };
+  //     return {
+  //       contacts: [...prev.contacts, newContact],
+  //     };
   //   });
   // };
 
-  const handleChange = event => {
-    const { name, value } = event.target;
-    switch (name) {
-      case 'name':
-        return setName(value);
-
-      case 'number':
-        return setNumber(value);
-
-      default:
-        return;
-    }
-  };
-
-  // handleSubmit = e => {
-  //   e.preventDefault();
-  //   const { name, number } = this.state;
-  //   this.props.onSubmit({ name, number });
-  //   this.setState({
-  //     name: '',
-  //     number: '',
-  //   });
-  // };
-
-  // evt.preventDefault();
-  // contacts.find(contact => contact.name === name);
-
-  // dispatch(addContact({ name, number }));
-
-  const handleSubmit = e => {
-    e.preventDefault();
-    addContacts();
-    setName('');
-    setNumber('');
-  };
-
-  // const { nameId, numberId, handleSubmit, handleChange } = this;
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={onSubmit}>
       <div>
         <Label htmlFor={nameId}>Name</Label>
         <Input
@@ -70,8 +56,8 @@ export const FormAddPhone = ({ addContacts }) => {
           type="text"
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-          value={name}
-          onChange={handleChange}
+          value={nameValue}
+          onChange={onChange}
           required
         />
       </div>
@@ -84,8 +70,8 @@ export const FormAddPhone = ({ addContacts }) => {
           type="tel"
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-          value={number}
-          onChange={handleChange}
+          value={numberValue}
+          onChange={onChange}
           required
         />
       </div>
